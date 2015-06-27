@@ -1,3 +1,4 @@
+/* 5.11.1.c */
 #define S2M 60
 #include <stdio.h>
 int main(void)
