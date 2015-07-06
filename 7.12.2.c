@@ -5,7 +5,7 @@ int main(void)
 {
 	int count = 0;
 	char ch;
-	while (scanf("%c", &ch) == 1, ch != '#')
+	while ((scanf("%c", &ch) == 1) && ch != '#')
 	{
 		if (count++ % COL != 0)
 			printf("%c -> %d  ", ch, ch);
