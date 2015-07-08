@@ -5,7 +5,6 @@ int main(void)
 	int num;
 	int cnt_ev = 0;
 	int cnt_od = 0;
-	int evr_ev, evr_od;
 	int sum_ev = 0;
 	int sum_od = 0;
 	
