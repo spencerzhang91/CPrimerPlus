@@ -1,4 +1,4 @@
-/* 7.12.10.c */
+/* 7.12.10.c This version is shit like.....*/
 #include <stdio.h>
 #define SNG 17850		// tax threshold for single
 #define OWN 23900		// tax threshold for ownner		
