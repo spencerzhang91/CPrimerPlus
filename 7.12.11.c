@@ -1,6 +1,6 @@
 /* 7.12.11.c -- This program seems a little useful in real world as well... */
 #include <stdio.h>
-#include <stdbool.h>
+#include <ctype.h>
 #define POTATO 1.25		 // price of potato per pound
 #define SUGARBEET 0.65	 // price of sugarbeet per pound
 #define CARROT 0.89		 // price of carrot per pound
@@ -40,13 +40,13 @@ int main(void)
 		{
 			case 'a':
 				printf("Enter amount(pound): ");
-				scanf("%d", &p_pound);break;		// there is no protection for p_pound type, could be wrong
+				p_pound = amount();break;		
 			case 'b':
 				printf("Enter amount(pound): ");
-				scanf("%d", &s_pound);break;
+				s_pound = amount();break;
 			case 'c':
 				printf("Enter amount(pound): ");
-				scanf("%d", &c_pound);break;
+				c_pound = amount();break;
 			case 'q':
 				break;
 			default:
@@ -93,5 +93,13 @@ void listing(int pp, int sp, int cp, float freight, float total, float discount)
 /* to be finished before July 10th */
 int amount(void)
 {
-	return 0;
+	int num;
+	char ch;
+	while (scanf("%d",&num) !=1 )
+	{
+		printf("Integer required, try again.\n");
+ 		while (getchar() != '\n')
+ 			continue;
+ 	}
+	return num;
 }
