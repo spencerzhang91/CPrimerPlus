@@ -13,6 +13,7 @@
 #define DR 0.05			 // discount rate is 5%
 
 void listing(int pp, int sp, int cp, float freight, float total, float discount);
+int amount(void);
 int main(void)
 {
 	int p_pound = 0;	 // weight of potato
@@ -39,7 +40,7 @@ int main(void)
 		{
 			case 'a':
 				printf("Enter amount(pound): ");
-				scanf("%d", &p_pound);break;
+				scanf("%d", &p_pound);break;		// there is no protection for p_pound type, could be wrong
 			case 'b':
 				printf("Enter amount(pound): ");
 				scanf("%d", &s_pound);break;
@@ -57,7 +58,9 @@ int main(void)
 		printf("Keep shopping(choose a) b) c) or q to quit)?\n");	
 	}	
 	weight = (p_pound + c_pound + s_pound);
-	if (weight <= P1)
+	if (weight = 0)
+		freight = 0;
+	else if (weight <= P1)
 		freight = F1;
 	else if (weight < P2)
 		freight = F2;
@@ -86,4 +89,9 @@ void listing(int pp, int sp, int cp, float freight, float total, float discount)
 	printf("  Total Cost: $%.2f\n", total - discount + freight);
 	printf("\n==============================================================\n");
 	return;
+}
+/* to be finished before July 10th */
+int amount(void)
+{
+	return 0;
 }
