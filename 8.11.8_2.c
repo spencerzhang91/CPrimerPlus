@@ -1,16 +1,21 @@
 /* 8.11.8.c */
 #include <stdio.h>
-#include <ctype.h>
 char get_choice(void);
 float get_num(void);
 int main(void)
 {
 	float fnum, snum;
 	char choice;
-	printf("Enter the option of your choice:\n");
-	printf("a. add\t\ts. subtract\nm. multiply\td. divide\nq. quit\n");
-	while ((choice = get_choice()) != 'q')
+	
+	while (1)
 	{
+		printf("Enter the option of your choice:\n");
+		printf("a. add\t\ts. subtract\nm. multiply\td. divide\nq. quit\n");
+		
+		choice = get_choice();
+		
+		if (choice == 'q')
+			break;
 		if ((choice != 'a') && (choice != 's') && (choice != 'm') && (choice != 'd'))
 		{
 			printf("If you don't choose right then default 'a'\n");
@@ -49,8 +54,6 @@ int main(void)
 			break;
 		}
 		printf("\n");
-		printf("Enter the option of your choice:\n");
-		printf("a. add\t\ts. subtract\nm. multiply\td. divide\nq. quit\n");
 	}
 	printf("Bye.\n");
 	return 0;
