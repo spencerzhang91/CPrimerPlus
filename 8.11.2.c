@@ -2,8 +2,21 @@
 #include <stdio.h>
 int main(void)
 {
-	int ch;
-	while ((ch = getchar()) != EOF)
-		printf("%c -> %d", ch, ch);
-	return 0;
+	char ch;
+    int i;
+
+    for(i=1;(ch=getchar())!=EOF;i++)
+    {
+
+        if (ch >= ' '||ch == '\n'||ch == '\t')
+            printf("%-5c",ch);
+        else
+            printf("^%-4c",ch+64);
+        printf("%-5d",ch);
+
+        if (i%8==0)
+            printf("\n");
+    }
+
+    return 0;
 }
