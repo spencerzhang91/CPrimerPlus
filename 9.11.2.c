@@ -4,8 +4,8 @@ void chline(char ch, int i, int j);
 int main(void)
 {
 	char c = '*';
-	int i = 4;
-	int j = 12;
+	int i = 5;
+	int j = 8;
 	chline(c, i, j);
 	return 0;
 }
@@ -15,6 +15,6 @@ void chline(char ch, int i, int j)
 	int cnt;
 	for (cnt = 1; cnt < i; cnt++)
 		putchar(' ');
-	for (cnt; cnt < j; cnt++)
+	for (cnt; cnt <= j; cnt++)
 		putchar(ch);
 }
