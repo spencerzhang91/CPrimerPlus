@@ -12,7 +12,7 @@ int main(void)
     {
         puts("Input n");
         scanf("%d", &n);
-        getchar();
+        getchar();              // to clean the '\n' after entering number n
         mystrncpy(s2, s1, n);
         printf("s1: %s\n", s1);
         printf("s2: %s\n", s2);
