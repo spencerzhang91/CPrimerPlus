@@ -1,6 +1,7 @@
 /* 13.11.3.c */
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
 #define LEN 80
 int main(void)
 {
@@ -26,7 +27,7 @@ int main(void)
         
     
     while ((temp = getc(source)) != EOF)
-        putc(temp, destin);
+        putc(toupper(temp), destin);
     if (ferror(source) != 0)
         fprintf(stderr, "Error in reading %s\n", src);
     if (ferror(destin) != 0)
