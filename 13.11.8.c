@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define MAXFILE 20
-
 int main(int argc, char *argv[])
 {
     int cnt = 0;
@@ -17,7 +16,7 @@ int main(int argc, char *argv[])
         exit(EXIT_FAILURE);
     }
     
-    if (argc = 2)
+    else if (argc == 2) // get fucked so hard for mistaken == as =
     {
         fprintf(stdout, "Please enter a string:\n");
         while ((ch = getc(stdin)) != EOF)
@@ -42,11 +41,11 @@ int main(int argc, char *argv[])
                 if (ch == *argv[1])
                     cnt++;             
             }
-            fprintf(stdout, "%d character %c counted in file %s\n",
-                cnt, argv[1], argv[i]);
+            fprintf(stdout, "character %c appeared %d times in file %s\n",
+                *argv[1], cnt, argv[i]);
+            fclose(temp);
+            cnt = 0;
         }
-    }
-       
-    
+    }    
     return 0;
 }
