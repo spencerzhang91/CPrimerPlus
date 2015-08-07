@@ -1,12 +1,11 @@
 /* 13.11.8.c */
 #include <stdio.h>
 #include <stdlib.h>
-#define MAXFILE 20
+
 int main(int argc, char *argv[])
 {
     int cnt = 0;
     char ch;
-    char *name[MAXFILE];
     FILE *temp;
     
     if (argc < 2)
