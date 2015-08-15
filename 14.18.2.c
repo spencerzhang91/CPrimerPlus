@@ -9,7 +9,9 @@ struct months {
     int days;
     int mnum;
 };
-void setval(char *strm, int *y, int *m, int *d);
+void setval(int *y, int *m, int *d);
+int sumdays(struct months p[12], int year, int month, int day);
+int isleap(int year);
 int main(void)
 {
     int year, month, day;
@@ -30,18 +32,52 @@ int main(void)
         {"November", "NOV", 31, 11},
         {"December", "DEC", 28, 12},
     };
-    setval(mname, &year, &month, &day);
-    if (mname[0] == '\0')
-        printf("%d-%d-%d\n", year, month, day);
-    else
-        printf("%d-%s-%d\n", year, mname, day);
+    setval(&year, &month, &day);
+    tot = sumdays(calandar, year, month, day);
+    printf("Total days till %d-%d-%d is %d days.\n",
+    		year, month, day, tot);
+    
     return 0;   
 }
 
-void setval(char *strm, int *y, int *m, int *d)
+void setval(int *y, int *m, int *d)
 {
-    puts("Please enter year: ");
-    
+    puts("Please enter interger date (year-month-day): ");
+    if (scanf("%d-%d-%d", y, m, d) < 3)
+	{
+		puts("Invalid input");
+		exit(1);
+	}
+	else if (*y < 0 || (*m < 0 || *m > 12) || (*d < 0 || *d > 31))
+	{
+		puts("Wrong input");
+		exit(2);
+	}
 }
 
+int sumdays(struct months p[12], int year, int month, int day)
+{
+	int sum = 0;
+	for (int i = 1; i < month; i++)
+		sum += p[i-1].days;
+	sum += day;
+	if (isleap(year) && month > 1 && day > 28)
+		sum += 1;
+	return sum;
+}
 
+int isleap(int year)
+{
+	int res = 0;
+	if (year % 100 == 0)
+	{
+		if (year % 400 == 0)
+			res = 1;
+	}
+	else
+	{
+		if (year % 4 == 0)
+			res = 1;
+	}
+	return res;
+}
