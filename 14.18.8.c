@@ -18,6 +18,8 @@ void empty_list(struct seat **ptr);
 void sortedlist(struct seat **ptr);
 void assignseat(struct seat **ptr);
 void deleteseat(struct seat **ptr);
+void readfile(struct seat *ptr, char *filename);
+void writefile(struct seat *ptr, char *filename);
 
 int main(void)
 {
@@ -25,16 +27,19 @@ int main(void)
     char command[LEN];
     struct seat plane[SIZE];
     struct seat *pp[SIZE];
-    for (int i = 0; i < SIZE; i++)
+    
+    for (int i = 0; i < SIZE; i++)  // initialize
     {
         plane[i].code = 'A' + i;
         plane[i].sold = 0;
-        //plane[i].first = "";
-        //plane[i].last = "";
     }
-    for (int i = 0; i < SIZE; i++)
+    
+    readfile(plane, "data.dat");    // load file and override initialization
+    
+    for (int i = 0; i < SIZE; i++)  // temporary array of struct pointer initialization
         pp[i] = &plane[i];
-    while (1) 
+    int flag = 1;
+    while (flag == 1) 
     {
         showmenu();
         gets(command);
@@ -45,10 +50,11 @@ int main(void)
             case 'c': sortedlist(pp); break;
             case 'd': assignseat(pp); break;
             case 'e': deleteseat(pp); break;
-            case 'f': break; break;
+            case 'f': flag = 0; break;
             default: puts("choose a/b/c/d/e/f");
         } 
     }
+    writefile(plane, "data.dat");
     puts("Good bye");
     return 0;
 }
@@ -137,4 +143,31 @@ void deleteseat(struct seat **ptr)
             break;
         }
     printf("%s %s, your assignment is canceled.\n", tfirst, tlast);    
+}
+
+void readfile(struct seat *p, char *filename)
+{
+    FILE *ps;
+    int count = 0;
+    if ((ps = fopen(filename, "a+b")) == NULL)
+    {
+        printf("Can't open %s file\n", filename);
+        exit(1);
+    }
+    rewind(ps);
+    while (count < SIZE && fread(p+count, sizeof(struct seat), 1, ps) == 1)
+        count++;
+    if (ferror(ps) != 0)
+        fprintf(stderr, "Error in loading structure data\n");
+    fclose(ps);
+}
+
+void writefile(struct seat *p, char *filename)
+{
+    FILE *ps;
+    ps = fopen(filename, "r+b");
+    fwrite(p, sizeof(struct seat), SIZE, ps);
+    if (ferror(ps) != 0)
+        fprintf(stderr, "Error in saving structure data\n");
+    fclose(ps);
 }
