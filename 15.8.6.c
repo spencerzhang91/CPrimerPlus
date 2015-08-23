@@ -112,17 +112,3 @@ void change_bius(struct font *pf, int key)
         default: puts("Invalid input.");
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
