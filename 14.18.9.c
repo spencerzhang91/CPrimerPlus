@@ -88,7 +88,7 @@ int main(void)
 
 void showmenu(void)
 {
-    printf("To choose a function, enter its letter lable:\n");
+    printf("\nTo choose a function, enter its letter lable:\n");
     printf("a) Show number of empty seats\n");
     printf("b) Show list of empty seats\n");
     printf("c) Show alphabetical list of seats\n");
@@ -100,7 +100,7 @@ void showmenu(void)
 int shownumber(struct seat *(*ptr)[SIZE], int n)
 {
     int left_t = SIZE * FLT;
-    int left = FLT;
+    int left = SIZE;
     for (int f = 0; f < FLT; f++)
         for (int i = 0; i < SIZE; i++)
         {
@@ -166,9 +166,10 @@ void assignseat(struct seat *(*ptr)[SIZE], int n)
                 ptr[n][i]->sold = 1;
                 break;
             }
-        printf("%s %s has booked seat %c.\n", ptr[n][i]->first,
-                                              ptr[n][i]->last,
-                                              ptr[n][i]->code);
+        printf("%s %s has booked seat %c of flight %s.\n", ptr[n][i]->first,
+                                                           ptr[n][i]->last,
+                                                           ptr[n][i]->code,
+                                                           flts[n]);
     }
 }
 
@@ -201,7 +202,7 @@ void readfile(struct seat (*p)[FLT], char *filename)
         exit(1);
     }
     rewind(ps);
-    while (count < SIZE && fread(p+count, sizeof(struct seat), 1, ps) == 1)
+    while (count < FLT && fread(p+count, SIZE * sizeof(struct seat), 1, ps) == 1)
         count++;
     if (ferror(ps) != 0)
         fprintf(stderr, "Error in loading structure data\n");
@@ -212,7 +213,7 @@ void writefile(struct seat (*p)[FLT], char *filename)
 {
     FILE *ps;
     ps = fopen(filename, "r+b");
-    fwrite(p, sizeof(struct seat), SIZE, ps);
+    fwrite(p, SIZE * sizeof(struct seat), FLT, ps);
     if (ferror(ps) != 0)
         fprintf(stderr, "Error in saving structure data\n");
     fclose(ps);
