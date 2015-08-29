@@ -24,7 +24,11 @@ int main(void)
         if (head == NULL)
             head = current;
         else
-            prev->next = current;
+        {
+        	prev->next = current;
+        	current->prev = prev;
+		}
+            
         strcpy(current->title, input);
         puts("Enter your rating <0-10>: ");
         scanf("%d", &current->rating);
@@ -32,8 +36,10 @@ int main(void)
             continue;
         puts("Enter next movie title (empty line to stop): ");
         prev = current;
+        tail = current;
     }
     
+    puts("Display list from head to tail:");
     if (head == NULL)
         puts("No data entered.");
     else
@@ -45,6 +51,18 @@ int main(void)
         current = current->next;
     }
     
+    puts("Display list from tail to head:");
+    if (tail == NULL)
+    	puts("No data entered.");
+    else
+    	puts("Here is the movie list: ");
+    current = tail;
+    while (current != NULL)
+    {
+    	printf("Movie: %s Rating : %d\n", current->title, current->rating);
+    	current = current->prev;
+	}
+	
     current = head;
     while (current != NULL)
     {
