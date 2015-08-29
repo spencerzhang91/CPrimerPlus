@@ -1,4 +1,4 @@
-/* 17.12.1.c -- 1 */
+/* 17.12.1.c -- 2 */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -7,8 +7,9 @@ struct film {
     char title[TSIZE];
     int rating;
     struct film *next;
-    struct film *prev;
 };
+
+void display(struct film *node);
 
 int main(void)
 {
@@ -24,11 +25,8 @@ int main(void)
         if (head == NULL)
             head = current;
         else
-        {
         	prev->next = current;
-        	current->prev = prev;
-		}
-        current->next = NULL;   
+        current->next = NULL;    
         strcpy(current->title, input);
         puts("Enter your rating <0-10>: ");
         scanf("%d", &current->rating);
@@ -36,34 +34,15 @@ int main(void)
             continue;
         puts("Enter next movie title (empty line to stop): ");
         prev = current;
-        tail = current;
     }
     
-    puts("Display list from head to tail:");
     if (head == NULL)
         puts("No data entered.");
     else
         puts("Here is the movie list: ");
-    current = head;
-    while (current != NULL)
-    {
-        printf("Movie: %s  Rating: %d\n", current->title, current->rating);
-        current = current->next;
-    }
-    
-    puts("Display list from tail to head:");
-    if (tail == NULL)
-    	puts("No data entered.");
-    else
-    	puts("Here is the movie list: ");
-    current = tail;
-    while (current != NULL)
-    {
-    	printf("Movie: %s Rating : %d\n", current->title, current->rating);
-    	current = current->prev;
-	}
 	
-    current = head;
+    display(head);
+    
     while (current != NULL)
     {
         free(current);
@@ -72,4 +51,11 @@ int main(void)
     printf("Bye!\n");
     
     return 0;
+}
+
+void display(struct film *node)
+{
+    if (node->next != NULL)
+    	display(node->next);
+    printf("Movie: %s  Rating: %d\n", node->title, node->rating);
 }
