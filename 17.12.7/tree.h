@@ -1,33 +1,28 @@
-/* tree.h -- binary search tree */
-#ifndef _TREE_H_
-#define _TREE_H_
+/* list.h -- simple list type head file */
+#ifdef LIST_H_
+#define LIST_H_
 #include <stdbool.h>
 
-typedef struct item {
-    char petname[20];
-    char petkind[20];
-} Item;
+#define TSIZE 45
+struct film {
+    char title[TSIZE];
+    int rating;
+};
 
-#define MAXITEMS 30
-
+typedef struct film Item;
 typedef struct node {
     Item item;
-    struct node *left;                  // pointer to left branch
-    struct node *right;                 // pointer to right branch
+    struct node *next;
 } Node;
 
-typedef struct tree {
-    Node *root;                         // pointer to root
-    int size;                           // nodes in a tree
-} Tree;
+typedef Node *List;
 
-void InitializeTree(Tree *ptree);
-bool TreeIsEmpty(const Tree *ptree);
-bool TreeIsFull(const Tree *ptree);
-int TreeItemCount(const Tree *ptree);
-bool AddItem(const Item *pi, Tree *ptree);
-bool InTree(const Item *pi, const Tree *ptree);
-bool DeleteItem(const Item *pi, Tree *ptree);
-void Traverse(const Tree *ptree, void (*pfun)(Item item));
-void DeleteAll(Tree *ptree);
+void InitializeList(List *plist);
+bool ListIsEmpty(const List *plist);
+bool ListIsFull(const List *plist);
+unsigned int ListItemCount(const List *plist);
+bool AddItem(Item item, List *plist);
+void Traverse(const List *plist, void (*pfun)(Item item));
+void EmptyTheList(List *plist);
+
 #endif
