@@ -1,0 +1,18 @@
+/* rows1.c -- using nested loop in C */
+#include <stdio.h>
+int main(void)
+{
+	const int ROWS = 12;
+	const int CHARS = 26;
+	
+	int row;
+	char ch;
+	
+	for (row = 0; row < ROWS; row++)
+	{
+		for (ch = 'A'; ch < ('A' + CHARS); ch++)
+			printf("%c", ch);
+		printf("\n");
+	}
+	return 0;
+}
