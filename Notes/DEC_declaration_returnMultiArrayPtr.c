@@ -11,6 +11,8 @@ int main(void)
     // ======================= Variable Declearation ==================== //
     // No.1: char array
     char array_char_a[3] = {'a','b','c'};                           // ok
+    char array_char_aa[3] = "abc";
+    printf("%c", array_char_aa[0]);
     char *array_char_p = (char *)malloc(sizeof(char) * 3);          // ok
     for (int i = 0; i < 3; i++)                                     // initialize
         *(array_char_p + i) = 'a' + i;
@@ -28,8 +30,10 @@ int main(void)
 }
 
 // No.4: function that returns array of string pointer
-char **func_rcharPtrArray(void)
+char **func_rcharPtrArray(void)                                     // ok
 {
     static char *temp[3] = {"abcd","e","fg"};
     return temp;
 }
+/* from here we notice that in C does not support a function definition that
+returns an array. So use pointer when facing such need. */
