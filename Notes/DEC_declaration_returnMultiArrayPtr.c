@@ -4,6 +4,7 @@
 #include <math.h>
 
 char **func_rcharPtrArray(void);
+int **Func_re_2DIntArray_Ptr(void);
 
 int main(void)
 {
@@ -26,6 +27,10 @@ int main(void)
     char **call_func_no4;
     call_func_no4 = func_rcharPtrArray();
     printf("%s", call_func_no4[2]);
+    int **call_func_no5;
+    call_func_no5 = Func_re_2DIntArray_Ptr();
+    printf("\n%d", call_func_no5);
+    
     return 0;
 }
 
@@ -37,3 +42,11 @@ char **func_rcharPtrArray(void)                                     // ok
 }
 /* from here we notice that in C does not support a function definition that
 returns an array. So use pointer when facing such need. */
+
+// No.5 function that returns pointer that point to 2d int array
+int **Func_re_2DIntArray_Ptr(void)
+{
+    int **ptr = (int **)malloc(sizeof(int *));
+    **ptr = 3;
+    return ptr;
+}
