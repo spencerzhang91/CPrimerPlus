@@ -29,8 +29,8 @@ int main(void)
     printf("%s", call_func_no4[2]);
     int **call_func_no5;
     call_func_no5 = Func_re_2DIntArray_Ptr();
-    printf("\n%d", call_func_no5);
-    
+    printf("->return: %d", **call_func_no5);
+
     return 0;
 }
 
@@ -46,7 +46,9 @@ returns an array. So use pointer when facing such need. */
 // No.5 function that returns pointer that point to 2d int array
 int **Func_re_2DIntArray_Ptr(void)
 {
-    int **ptr = (int **)malloc(sizeof(int *));
-    **ptr = 3;
+    int **ptr;
+    int array[2][2] = {{2,4},{5,8}};
+    printf("\n->%d\n", **array);
+    ptr = array;
     return ptr;
 }
