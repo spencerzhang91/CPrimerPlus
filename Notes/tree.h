@@ -9,7 +9,6 @@ typedef struct item {
 } Item;
 
 #define MAXITEMS 30
-
 typedef struct node {
     Item item;
     struct node *left;                  // pointer to left branch
