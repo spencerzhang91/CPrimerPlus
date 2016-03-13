@@ -11,14 +11,17 @@ struct person {
     int height;
 };
 
-
-
 int main(void)
 {
-    int numbers[10];
-    for (int i = 0; i < 10; i++)
-        scanf("%d", &numbers[i]);
-    printf("%d", numbers[3]);
+    int *numbers[5];
+    for (int i = 0; i < 5; i++)
+        numbers[i] = (int *)malloc(sizeof(int));
+    for (int i = 0; i < 5; i++)
+        scanf("%d", numbers[i]);
+
+    printf("output:\n");
+    for (int i = 0; i < 5; i++)
+        printf("%d ", *(numbers[i]));
 
     return 0;
 }
