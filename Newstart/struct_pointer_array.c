@@ -23,5 +23,15 @@ int main(void)
     for (int i = 0; i < 5; i++)
         printf("%d ", *(numbers[i]));
 
+    Person staff[3];
+    for (int j = 0; j < 3; j++)
+        staff[j] = (Person)malloc(sizeof(struct person));
+    for (int j = 0; j < 3; j++)
+        scanf("%s %d", staff[j]->name, staff[j]->height);
+
+    printf("output person:\n");
+    for (int j = 0; j < 3; j++)
+        printf("%s %d\n", staff[j]->name, staff[j]->height);
+
     return 0;
 }
