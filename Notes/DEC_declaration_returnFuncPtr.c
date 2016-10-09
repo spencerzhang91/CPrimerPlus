@@ -8,8 +8,8 @@ int main(void)
     int (*t)(void);
     p = testfunc;
     t = returnFunptr();
-    printf("%p\n", p);
-    printf("%p\n", t);
+    printf("pointer p: %p\n", p);
+    printf("pointer t: %p\n", t);
 
     return 0;
 }
